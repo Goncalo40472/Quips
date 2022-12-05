@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>´
                 <div class="card-body">
-                    You are a normal user!
+                    You are a buyer!
                 </div>
             </div>
         </div>
