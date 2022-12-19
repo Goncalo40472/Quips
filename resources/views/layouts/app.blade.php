@@ -39,13 +39,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Log in') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registar') }}</a>
                                 </li>
                             @endif
                         @else
@@ -55,6 +55,28 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile',Auth::user()) }}">
+                                        {{ __('Perfil') }}
+                                    </a>
+                                    @if(Auth::user()->type == 0)
+                                        <a class="dropdown-item" href="{{ route('users') }}">
+                                            {{ __('Utilizadores') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('categories') }}">
+                                            {{ __('Categorias') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('categories.create') }}">
+                                            {{ __('Criar Categoria') }}
+                                        </a>
+                                    @endif
+                                    @if(Auth::user()->type == 1)
+                                        <a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ __('Meus Produtos') }}
+                                        </a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Carrinho') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

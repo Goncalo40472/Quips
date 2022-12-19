@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,16 +16,20 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
-Route::get('/seller/home', [HomeController::class, 'sellerHome'])->name('seller.home')->middleware('is_seller');
+Route::get('/', [RoutingController::class, 'home'])->name('home');
+Route::get('/home', [RoutingController::class, 'home'])->name('home');
 
-Route::get('/buyer/home', [HomeController::class, 'buyerHome'])->name('buyer.home');
+Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
+
+Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::get('/users/show/{user}', [UserController::class, 'show'])->name('users.show');
+Route::post('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+Route::post('/categories/destroy/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
