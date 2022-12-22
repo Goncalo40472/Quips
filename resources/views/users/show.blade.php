@@ -41,10 +41,8 @@
                     <strong>Tipo de Utilizador:</strong>
                     @if($user->type == 0)
                         Administrador
-                    @elseif($user->type == 1)
-                        Vendedor
-                    @elseif($user->type == 2)
-                        Comprador
+                    @else
+                        Utilizador
                     @endif
                 </div>
             </div>
