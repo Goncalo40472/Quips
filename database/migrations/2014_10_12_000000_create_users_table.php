@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nif')->unique();
             $table->string('cellphone');
             $table->timestamp('email_verified_at')->nullable();
-            $table->tinyInteger('type')->default(2);
+            $table->tinyInteger('type')->default(1);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

@@ -94,8 +94,7 @@
 
                             <div class="col-md-6">
                                 <select id="type" name="type">
-                                    <option value="2">Comprador</option>
-                                    <option value="1">Vendedor</option>
+                                    <option value="1">Utilizador</option>
                                     <option value="0">Admin</option>
                                   </select>
                             </div>

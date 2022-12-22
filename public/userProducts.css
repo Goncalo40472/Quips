@@ -1,0 +1,56 @@
+#product {
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 15px;
+    margin: 5px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#name{
+    margin: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    font-size: 20px;
+}
+
+#name:link {
+    color: royalblue;
+    text-decoration: none;
+}
+  
+
+#name:visited {
+   color: royalblue;
+   text-decoration: none;
+}
+  
+#name:hover {
+   color: lightskyblue;
+}
+
+#price{
+    margin-top: 90px;
+    margin-bottom: 90px;
+    margin-left: auto;
+    margin-right: 50px;
+    font-size: 20px;
+}
+
+img{
+    border-radius: 15px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+}
+
+/* .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} */
