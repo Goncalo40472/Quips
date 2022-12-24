@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Review extends Model
 {
     use HasFactory;
 
@@ -15,11 +15,10 @@ class Product extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'category_id',
-        'seller',
-        'image',
+        'title',
+        'comment',
+        'rating',
+        'product_id',
+        'user_id',
     ];
 }

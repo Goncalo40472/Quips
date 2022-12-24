@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
-use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
 
@@ -13,9 +12,6 @@ use App\Models\Category;
  */
 class ProductFactory extends Factory
 {
-
-    //$seller = User::all()->id;
-
     /**
      * Define the model's default state.
      *

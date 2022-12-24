@@ -69,8 +69,11 @@
                                             {{ __('Criar Categoria') }}
                                         </a>
                                     @endif
-                                    <a class="dropdown-item" href="{{ route('products',Auth::user()) }}">
+                                    <a class="dropdown-item" href="{{ route('myProducts',Auth::user()) }}">
                                         {{ __('Meus Produtos') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('products.create',Auth::user()) }}">
+                                        {{ __('Listar Produto') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('Carrinho') }}

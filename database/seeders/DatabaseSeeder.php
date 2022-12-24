@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Review;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([CategorySeeder::class]);
 
         Product::factory(100)->create();
+
+        Review::factory(100)->create();
     }
 }

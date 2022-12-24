@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,12 @@ use App\Http\Controllers\ProductController;
 
 Auth::routes(['verify' => true]);
 
-/* Default Routes */
+/* Home Routes */
 
-Route::get('/', [RoutingController::class, 'home'])->name('home');
-Route::get('/home', [RoutingController::class, 'home'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+/* User Routes */
 
 Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
 
@@ -37,7 +40,16 @@ Route::get('/categories/create', [CategoryController::class, 'create'])->name('c
 Route::post('/categories/destroy/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy')->middleware('is_admin');
 Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store')->middleware('is_admin');
 
-/* Seller Routes */
+/* Products Routes */
 
-Route::get('/products/{user}', [ProductController::class, 'index'])->name('products');
-Route::get('products/show/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/products/{user}', [ProductController::class, 'myProducts'])->name('myProducts')->middleware('is_auth_user');
+Route::get('/products/show/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{user}/create', [ProductController::class, 'create'])->name('products.create');
+Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('is_auth_user');
+Route::post('/products/destroy/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('is_auth_user');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+
+/* Reviews Routes */
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');

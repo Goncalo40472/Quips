@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,10 +15,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index()
     {
-        $products = Product::all();
-        return view('products.index', compact('products', 'user'));
+        $products = Product::paginate(10);
+        return view('products.index', ['products' => $products]);
     }
 
     /**
@@ -27,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('products.create', ['categories' => $categories]);
     }
 
     /**
@@ -38,7 +40,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'category' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'seller' => 'required',
+        ]);
+
+        $request->file('image')->store('public/images');
+
+        $price = $request->get('price');
+        $price = str_replace(',', '.', $price);
+
+        $product = new Product([
+            'name' => $request->get('name'),
+            'price' => floatval($price),
+            'description' => $request->get('description'),
+            'category_id' => $request->get('category'),
+            'image' => $request->file('image')->hashName(),
+            'seller' => $request->get('seller'),
+        ]);
+
+        $product->save();
+        $products = Product::where('seller', $product->seller)->get();
+        $user = User::find($product->seller);
+        return view('products.myProducts', compact('products', 'user'));
     }
 
     /**
@@ -51,7 +79,9 @@ class ProductController extends Controller
     {
         $category = Category::find($product->category_id);
         $seller = User::find($product->seller);
-        return view('products.show', compact('product', 'category', 'seller'));
+        $reviews = Review::where('product_id', $product->id)->get();
+        $users = User::all();
+        return view('products.show', compact('product', 'category', 'seller', 'reviews', 'users'));
     }
 
     /**
@@ -62,7 +92,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', ['product' => $product]);
     }
 
     /**
@@ -85,6 +115,17 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $reviews = Review::where('product_id', $product->id)->get();
+        $reviews->each->delete();
+        $product->delete();
+        $products = Product::where('seller', $product->seller)->get();
+        $user = User::find($product->seller);
+        return view('products.myProducts', compact('products', 'user'));
+    }
+
+    public function myProducts(User $user)
+    {
+        $products = Product::where('seller', $user->id)->get();
+        return view('products.myProducts', compact('products', 'user'));
     }
 }

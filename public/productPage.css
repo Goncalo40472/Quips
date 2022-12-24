@@ -14,7 +14,7 @@
 }
 
 #name{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -23,20 +23,22 @@
     font-weight: bold;
 }
 
-#buy{
+#buy, #addCart{
     width: 300px;
+    height: 50px;
     margin: 10px;
     color: white;
-    background-color: mediumblue;
+    font-weight: bold;
     border-radius: 25px;
+    padding: 12px;
+}
+
+#buy{
+    background-color: mediumblue;
 }
 
 #addCart{
-    width: 300px;
-    margin: 10px;
-    color: white;
     background-color: royalblue;
-    border-radius: 15px;
 }
 
 #buy:hover, #addCart:hover{
@@ -49,15 +51,19 @@
     margin-top: 60px;
     padding: 10px;
     font-size: 15px;
-    border: solid;
-    border-width: 1px;
-    border-radius: 15px;
     text-align: left;
-    border-color: dodgerblue;
+    border-top: 1px solid dodgerblue;
+    border-bottom: 1px solid dodgerblue;
+    border-radius: 15px;
 }
 
 #descriptionTitle{
     font-weight: bold;
+    font-size: 20px;
+}
+
+#description, #seller, #category{
+    margin-left: 15px;
 }
 
 img{
@@ -67,4 +73,95 @@ img{
     border-style: solid;
     width: 300px;
     height: 300px;
+}
+
+.reviews{
+    margin: 15px;
+    margin-top: 60px;
+    padding: 10px;
+    font-size: 15px;
+    text-align: left;
+    border-top: 1px solid dodgerblue;
+    border-bottom: 1px solid dodgerblue;
+    border-radius: 15px;
+}
+
+#reviewsTitle{
+    font-size: 20px;
+}
+
+#reviewsTitle, #reviewTitle, #reviewUser, #reviewRating{
+    font-weight: bold;
+}
+
+.review, #newReview{
+    margin: 10px;
+    padding: 10px;
+    border-top: 1px solid goldenrod;
+    border-bottom: 1px solid goldenrod;
+    border-radius: 15px;
+}
+
+#reviewTitle{
+    margin-left: 15px;
+}
+
+#reviewDescription{
+    margin-left: 30px;
+}
+
+#reviewRating, #reviewUser{
+    color:goldenrod;
+}
+
+#newReview{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+#newReviewHeader{
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#newReviewTitle, #newReviewComment{
+    margin: 10px;
+    width: 800px;
+    border-radius: 10px;
+}
+
+#newReviewComment{
+    height: 100px;
+}
+
+#newRatingLabel{
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#newReviewRating{
+    margin: 10px;
+    margin-top: 0px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+#newReviewSubmit{
+    margin: 10px;
+    width: 200px;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: darkgoldenrod;
+    padding: 12px;
+    background-color: goldenrod;
+}
+
+#newReviewSubmit:hover{
+    background-color: darkgoldenrod;
 }
