@@ -1,12 +1,28 @@
+#title{
+    font-size: 30px;
+    margin: 20px;
+    margin-top: 5px;
+    text-align: center;
+    color: dodgerblue;
+    font-weight: bold;
+}
+
 #product {
     border-width: 1px;
     border-color: black;
     border-style: solid;
     border-radius: 15px;
+    border-color: dodgerblue;
     margin: 5px;
     background-color: white;
     display: flex;
     flex-wrap: wrap;
+}
+
+#details{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 #name{
@@ -17,13 +33,13 @@
 }
 
 #name:link {
-    color: royalblue;
+    color: dodgerblue;
     text-decoration: none;
 }
   
 
 #name:visited {
-   color: royalblue;
+   color: dodgerblue;
    text-decoration: none;
 }
   
@@ -34,8 +50,7 @@
 #price{
     margin-top: 90px;
     margin-bottom: 90px;
-    margin-left: auto;
-    margin-right: 50px;
+    margin-left: 0px;
     font-size: 20px;
 }
 
@@ -44,13 +59,50 @@ img{
     border-color: black;
     border-width: 2px;
     border-style: solid;
+    border-color: dodgerblue;
     margin: 20px;
     width: 200px;
     height: 200px;
 }
 
-/* .container {
+#buttons{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-} */
+    flex-direction: row;
+    margin: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+#edit, #delete{
+    font-size: 15px;
+    margin: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 70px;
+    height: 35px;
+    text-align: center;
+    color: white;
+    text-decoration: none; 
+}
+
+#edit{
+    background-color: dodgerblue;
+    border-color: dodgerblue;
+}
+
+#edit:hover {
+    background-color: mediumblue;
+}
+
+#delete{
+    background-color: red;
+    border-color: red;
+}
+
+#delete:hover {
+    background-color: darkred;
+}
