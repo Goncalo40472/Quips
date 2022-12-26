@@ -29,9 +29,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 /* User Routes */
 
 Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
-Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit');
-Route::post('/profile/{user}', [UserController::class, 'update'])->name('profile.update');
-Route::post('/profile/{user}/destroy', [UserController::class, 'destroy'])->name('profile.destroy');
+Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit')->middleware('is_auth_user');
+Route::post('/profile/{user}', [UserController::class, 'update'])->name('profile.update')->middleware('is_auth_user');
+Route::post('/profile/destroy/{user}', [UserController::class, 'destroy'])->name('profile.destroy')->middleware('is_auth_user');
 
 /* Admin Routes */
 

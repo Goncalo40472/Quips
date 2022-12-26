@@ -24,19 +24,19 @@
     margin-bottom: 0px;
 }
 
-form{
+#profileDetails > form{
     display: flex;
     flex-direction: column;
 }
 
-form > label{
+#profileDetails > form > label{
     margin-top: 20px;
     color: deepskyblue;
     font-weight: bold;
     font-size: 18px;
 }
 
-form > input{
+#profileDetails > form > input{
     border: 1px solid deepskyblue;
     border-radius: 5px;
     padding: 8px;

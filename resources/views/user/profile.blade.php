@@ -13,8 +13,11 @@
     </div>
     @if($user->id == Auth::user()->id)
     <div id="editProfile">
-        <a class="btn btn-primary" id="edit" href="{{ route('profile.edit', $user) }}">Editar perfil</a>
-        <a class="btn btn-danger" id="cancel" href="{{ route('profile.destroy', $user) }}">Eliminar perfil</a>
+        <form action="{{ url('users/destroy/'.$user->id) }}" method="POST">
+            @csrf
+            <a class="btn btn-primary" id="edit" href="{{ route('profile.edit', $user) }}">Editar perfil</a>
+            <button id="delete" type="submit" class="btn btn-danger">Apagar perfil</button>
+        </form>
     </div>
     @endif
 </div>

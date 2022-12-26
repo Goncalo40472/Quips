@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Review;
 
 class UserController extends Controller
 {
@@ -68,7 +70,27 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+
+        $reviews = Review::where('user_id', $user->id)->get();
+        $reviews->each->delete();
+
+        $products = Product::where('seller', $user->id)->get();
+
+        foreach ($products as $product) {
+            $reviews = Review::where('product_id', $product->id)->get();
+            $reviews->each->delete();
+            $product->delete();
+        }
+
         $user->delete();
+
+        if (auth()->user()->id == $user->id) {
+
+            auth()->logout();
+            return redirect()->route('home');
+
+        }
+
         return redirect()->route('users');
     }
 
