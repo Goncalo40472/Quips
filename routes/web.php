@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\PaymentController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 /* User Routes */
 
 Route::get('/profile/{user}', [UserController::class, 'profile'])->name('profile');
+Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->name('profile.edit')->middleware('is_auth_user');
+Route::post('/profile/{user}', [UserController::class, 'update'])->name('profile.update')->middleware('is_auth_user');
+Route::post('/profile/destroy/{user}', [UserController::class, 'destroy'])->name('profile.destroy')->middleware('is_auth_user');
 
 /* Admin Routes */
 
@@ -49,7 +53,13 @@ Route::get('/products/{user}/create', [ProductController::class, 'create'])->nam
 Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('is_auth_user');
 Route::post('/products/destroy/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('is_auth_user');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 /* Reviews Routes */
 
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+/* Payments Routes */
+
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');

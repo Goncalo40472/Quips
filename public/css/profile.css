@@ -1,0 +1,31 @@
+#profile{
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 5px dodgerblue;
+    margin: 40px;
+}
+
+
+
+h1{
+    font-size: 30px;
+    padding-bottom: 30px;
+    color: dodgerblue;
+}
+
+p{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#edit{
+    background-color: dodgerblue;
+    border: 1px solid dodgerblue;
+}
+
+#edit:hover{
+    background-color: deepskyblue;
+    border: 1px solid deepskyblue;
+}

@@ -41,12 +41,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
             'price' => 'required',
-            'description' => 'required',
-            'category' => 'required',
+            'description' => 'required|string|max:255',
+            'category' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'seller' => 'required',
+            'seller' => 'required|integer',
         ]);
 
         $request->file('image')->store('public/images');
@@ -127,5 +127,12 @@ class ProductController extends Controller
     {
         $products = Product::where('seller', $user->id)->get();
         return view('products.myProducts', compact('products', 'user'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $products = Product::where('name', 'ilike', '%' . $search . '%')->paginate(10);
+        return view('products.index', ['products' => $products]);
     }
 }

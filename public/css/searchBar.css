@@ -1,0 +1,18 @@
+#searchBar > form{
+    display: flex;
+    flex-wrap: row;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    align-items: center;
+}
+
+#searchBar > form > input{
+    width: 500px;
+    height: 40px;
+}
+
+#searchBar > form > button{
+    width: 50px;
+    height: 35px;
+    margin-left: 10px;
+}

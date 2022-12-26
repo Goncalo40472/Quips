@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" type="text/css" href="{{ url('productPage.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('css/productPage.css') }}" />
 
 @section('content')
 <div id="product">
@@ -8,7 +8,7 @@
     <div id="productInfo">
         <p id="name">{{ $product->name }}</p>
         <p id="price">{{ $product->price }} €</p>
-        <a class="btn btn-primary" id="buy">Comprar já!</a>
+        <a class="btn btn-primary" id="buy" href="{{ route('payment') }}">Comprar já!</a>
         <a class="btn btn-primary" id="addCart">Adicionar ao carrinho</a>
         <div class="description">
             <p id="descriptionTitle">Descrição</p>

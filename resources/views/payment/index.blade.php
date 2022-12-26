@@ -1,0 +1,1 @@
+<a class="btn btn-primary" id="buy" href="{{ route('payment.store') }}">Comprar já!</a>
