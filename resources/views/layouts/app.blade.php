@@ -12,6 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/searchBar.css') }}" />
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -32,6 +33,18 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
+
+                    <ul id="searchBar">
+                        <form action="{{ route('search') }}" method="GET">
+                            <input type="search" name="search" class="form-control rounded" placeholder="Search"/>
+                            <button type="submit" class="btn btn-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg>
+                            </button> 
+                        </form>
+                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

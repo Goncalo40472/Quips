@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" type="text/css" href="{{ url('userProducts.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('css/userProducts.css') }}" />
 
 @section('content')
 <div class="container">

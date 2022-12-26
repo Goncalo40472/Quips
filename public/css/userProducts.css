@@ -13,6 +13,7 @@
     border-style: solid;
     border-radius: 15px;
     border-color: dodgerblue;
+    box-shadow: 0 0 5px dodgerblue;
     margin: 5px;
     background-color: white;
     display: flex;
@@ -60,6 +61,7 @@ img{
     border-width: 2px;
     border-style: solid;
     border-color: dodgerblue;
+    box-shadow: 0 0 5px dodgerblue;
     margin: 20px;
     width: 200px;
     height: 200px;
@@ -92,6 +94,7 @@ img{
 #edit{
     background-color: dodgerblue;
     border-color: dodgerblue;
+    padding-top: 2.5px;
 }
 
 #edit:hover {
