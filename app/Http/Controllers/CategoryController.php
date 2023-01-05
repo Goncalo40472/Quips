@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Cart;
+use App\Models\Review;
 
 class CategoryController extends Controller
 {
@@ -56,6 +59,19 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $products = Product::where('category_id', $category->id)->get();
+
+        foreach($products as $product)
+        {
+            $carts = Cart::where('product_id', $product->id)->get();
+            $carts->each->delete();
+
+            $reviews = Review::where('product_id', $product->id)->get();
+            $reviews->each->delete();
+
+            $product->delete();
+        }
+
         $category->delete();
         return redirect()->route('categories');
     }

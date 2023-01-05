@@ -4,12 +4,17 @@
 
 @section('content')
 <div id="product">
-    <img src="{{ asset('storage/images/'.$product->image) }}" alt="image" width="200px" height="200px">
+    <img src="{{ asset('storage/images/'.$product->image) }}" alt="image">
     <div id="productInfo">
         <p id="name">{{ $product->name }}</p>
         <p id="price">{{ $product->price }} €</p>
-        <a class="btn btn-primary" id="buy" href="{{ route('payment') }}">Comprar já!</a>
-        <a class="btn btn-primary" id="addCart">Adicionar ao carrinho</a>
+        <form id="quantity" action="{{ route('cart.addProduct',$product) }}" method="POST">
+            @csrf
+            <a class="btn btn-primary" id="buy" href="{{ route('checkout',$product) }}">Comprar já!</a>
+            <button class="btn btn-primary" id="addCart" type="submit" class="btn btn-primary">Adicionar ao carrinho</button>
+            <label for="quantity">Quantidade</label>
+            <input type="number" name="quantity" value="1">
+        </form>
         <div class="description">
             <p id="descriptionTitle">Descrição</p>
             <p id="description">{{ $product->description }}</p>

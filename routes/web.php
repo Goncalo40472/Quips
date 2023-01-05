@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController; 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ReceiptController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,11 +51,16 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/{user}', [ProductController::class, 'myProducts'])->name('myProducts')->middleware('is_auth_user');
 Route::get('/products/show/{product}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/products/{user}/create', [ProductController::class, 'create'])->name('products.create');
-Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('is_auth_user');
-Route::post('/products/destroy/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('is_auth_user');
+Route::get('/products/create/{user}', [ProductController::class, 'create'])->name('products.create')->middleware('is_auth_user');
+Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit')->middleware('is_product_owner');
+Route::post('/products/destroy/{product}', [ProductController::class, 'destroy'])->name('products.destroy')->middleware('is_product_owner');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::post('/products/{product}', [ProductController::class, 'update'])->name('products.update')->middleware('is_product_owner');
+
+/* Search Routes */
+
 Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('/search/{order}', [ProductController::class, 'orderedSearch'])->name('search.order');
 
 /* Reviews Routes */
 
@@ -61,5 +68,18 @@ Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store
 
 /* Payments Routes */
 
-Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
-Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+Route::get('/checkout/{product}', [PaymentController::class, 'checkout'])->name('checkout');
+Route::post('/payment', [PaymentController::class, 'payment'])->name('payment.store');
+Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
+
+/* Cart Routes */
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/removeProduct/{product}', [CartController::class, 'removeProduct'])->name('cart.removeProduct');
+Route::post('/cart/addProduct/{product}', [CartController::class, 'addProduct'])->name('cart.addProduct');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::post('/cart/productQuantity/{product}', [CartController::class, 'productQuantity'])->name('cart.productQuantity');
+
+/* Receipt Routes */
+
+Route::get('/receipt/{buy}', [ReceiptController::class, 'generateReceipt'])->name('receipt')->middleware('is_buy_owner');

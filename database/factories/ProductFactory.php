@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'price' => fake()->randomFloat(2, 0, 200),
             'category_id' => Category::all()->random()->id,
             'seller' => User::all()->random()->id,
-            'image' => fake()->imageUrl(360, 360, 'product', true, 'image', false, 'jpg'),
+            'image' => 'product-image-placeholder.jpeg',
         ];
     }
 }

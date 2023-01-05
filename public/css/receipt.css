@@ -1,0 +1,32 @@
+#receipt{
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    position: relative;
+    text-align: center;
+}
+
+#quips{
+    font-size: 50px;
+    color: dodgerblue;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#title{
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#date{
+    font-size: 17px;
+    margin-bottom: 40px;
+}
+
+#userName, #price{
+    font-size: 20px;
+    margin-bottom: 10px;
+}

@@ -13,7 +13,7 @@
     </div>
     @if($user->id == Auth::user()->id)
     <div id="editProfile">
-        <form action="{{ url('users/destroy/'.$user->id) }}" method="POST">
+        <form action="{{ route('profile.destroy',$user) }}" method="POST">
             @csrf
             <a class="btn btn-primary" id="edit" href="{{ route('profile.edit', $user) }}">Editar perfil</a>
             <button id="delete" type="submit" class="btn btn-danger">Apagar perfil</button>

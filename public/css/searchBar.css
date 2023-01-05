@@ -16,3 +16,7 @@
     height: 35px;
     margin-left: 10px;
 }
+
+#searchBar > form > button > svg{
+    margin-bottom: 3px;
+}

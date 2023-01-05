@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $categories = Category::limit(4)->get();
+
+        $products = array();
+
+        foreach($categories as $category) {
+
+            $products[$category->id] = Product::where('category_id', $category->id)->limit(4)->get();
+            
+        }
+
+        return view('home', compact('products', 'categories'));
     }
 }
