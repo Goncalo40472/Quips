@@ -1,0 +1,43 @@
+#products{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#product{
+    margin: 20px;
+}
+
+#categories{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+#price{
+    margin-left: 25px;
+}
+
+#name{
+    margin: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+#name:link {
+    color: dodgerblue;
+    text-decoration: none;
+}
+  
+
+#name:visited {
+   color: dodgerblue;
+   text-decoration: none;
+}
+  
+#name:hover {
+   color: lightskyblue;
+}

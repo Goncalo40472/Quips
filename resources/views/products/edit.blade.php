@@ -8,17 +8,17 @@
         <p>Adicionar produto</p>
     </div>
     <div id="form">
-        <form id="createForm" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="seller" value="{{ Auth::user()->id }}">
             <label for="name">Nome</label>
-            <input type="text" name="name" id="name" placeholder="Nome do produto" value="{{old('name')}}" required>
+            <input type="text" name="name" id="name" placeholder="Nome" value="{{$product->name}}" required>
             <label for="description">Descrição</label>
-            <textarea name="description" id="description" placeholder="Descrição do produto" value="{{old('description')}}" required></textarea>
+            <textarea name="description" id="description" placeholder="Descrição do produto" required>{{$product->description}}</textarea>
             <label for="price">Preço</label>
-            <input type="text" name="price" id="price" placeholder="Preço do produto" value="{{old('price')}}" required>
+            <input type="text" name="price" id="price" placeholder="Preço do produto" value="{{$product->price}}" required>
             <label for="image">Imagem</label>
-            <input type="file" accept="image/*" name="image" id="image" required>
+            <input type="file" accept="image/*" value="{{$product->image}}" name="image" id="image">
             <label for="category">Categoria</label>
             <select name="category" id="category" required>
                 @foreach($categories as $category)

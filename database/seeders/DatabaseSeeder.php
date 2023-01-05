@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Cart;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +25,8 @@ class DatabaseSeeder extends Seeder
         Product::factory(100)->create();
 
         Review::factory(100)->create();
+
+        Cart::factory(100)->create();
+
     }
 }

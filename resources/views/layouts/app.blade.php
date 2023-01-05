@@ -34,6 +34,7 @@
 
                     </ul>
 
+                    @auth
                     <ul id="searchBar">
                         <form action="{{ route('search') }}" method="GET">
                             <input type="search" name="search" class="form-control rounded" placeholder="Search"/>
@@ -44,7 +45,7 @@
                             </button> 
                         </form>
                     </ul>
-                    
+                    @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -88,7 +89,7 @@
                                     <a class="dropdown-item" href="{{ route('products.create',Auth::user()) }}">
                                         {{ __('Listar Produto') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                    <a class="dropdown-item" href="{{ route('cart') }}">
                                         {{ __('Carrinho') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

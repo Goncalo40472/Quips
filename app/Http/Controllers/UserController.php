@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Cart;
+use App\Models\Buy;
 
 class UserController extends Controller
 {
@@ -79,18 +81,28 @@ class UserController extends Controller
         foreach ($products as $product) {
             $reviews = Review::where('product_id', $product->id)->get();
             $reviews->each->delete();
+
+            $carts = Cart::where('product_id', $product->id)->get();
+            $carts->each->delete();
+
             $product->delete();
         }
 
-        $user->delete();
+        $carts = Cart::where('user_id', $user->id)->get();
+        $carts->each->delete();
+
+        $buys = Buy::where('user_id', $user->id)->get();
+        $buys->each->delete();
 
         if (auth()->user()->id == $user->id) {
 
             auth()->logout();
+            $user->delete();
             return redirect()->route('home');
 
         }
 
+        $user->delete();
         return redirect()->route('users');
     }
 

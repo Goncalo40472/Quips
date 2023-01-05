@@ -20,34 +20,34 @@
     color: dodgerblue;
 }
 
-form{
+#createForm{
     display: flex;
     flex-direction: column;
     align-self: center;
 }
 
-form > label{
+#createForm > label{
     margin-top: 20px;
     color: deepskyblue;
     font-weight: bold;
     font-size: 15px;
 }
 
-form > input{
+#createForm > input{
     border: 1px solid deepskyblue;
     border-radius: 5px;
     padding: 8px;
     width: 500px;
 }
 
-form > textarea{
+#createForm > textarea{
     border: 1px solid deepskyblue;
     border-radius: 5px;
     padding: 8px;
     width: 500px;
 }
 
-form > select{
+#createForm > select{
     border: 1px solid deepskyblue;
     border-radius: 5px;
     padding: 8px;

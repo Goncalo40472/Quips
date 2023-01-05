@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class isAuthUser
+class isProductOwner
 {
     /**
      * Handle an incoming request.
@@ -17,8 +16,7 @@ class isAuthUser
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if(Auth::check() && auth()->user() == $request->user || auth()->user()->id == $request->user) {
+        if(auth()->user()->id == $request->product->seller) {
 
             return $next($request);
 
