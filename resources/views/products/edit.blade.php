@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
-<link rel="stylesheet" type="text/css" href="{{ url('css/createProduct.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url('css/editProduct.css') }}" />
 
 @section('content')
-<div class="addProduct">
-    <div id="title">
-        <p>Adicionar produto</p>
-    </div>
-    <div id="form">
+<div id="addProduct">
+    <div id="productDetails">
+        <p>Editar Produto</p>
         <form action="{{ route('products.update', $product) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="seller" value="{{ Auth::user()->id }}">

@@ -1,0 +1,60 @@
+#addProduct{
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 5px dodgerblue;
+    margin: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+#productDetails{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#productDetails > p{
+    font-size: 30px;
+    padding-bottom: 15px;
+    color: dodgerblue;
+    font-weight: bold;
+    margin-right: 30px;
+    margin-bottom: 0px;
+}
+
+#productDetails > form{
+    display: flex;
+    flex-direction: column;
+}
+
+#productDetails > form > label{
+    margin-top: 20px;
+    color: deepskyblue;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#productDetails > form > input{
+    border: 1px solid deepskyblue;
+    border-radius: 5px;
+    padding: 8px;
+    width: 500px;
+}
+
+#buttons{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#buttons > button{
+    border: 1px solid dodgerblue;
+    background-color: dodgerblue;
+    width: 100px;
+}
+
+#buttons > button:hover{
+    background-color: deepskyblue;
+    border-color: deepskyblue;
+}
