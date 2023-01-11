@@ -21,5 +21,6 @@ class Product extends Model
         'category_id',
         'seller',
         'image',
+        'stock',
     ];
 }
