@@ -115,6 +115,7 @@ class ProductController extends Controller
             'category' => 'required|integer',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'seller' => 'required|integer',
+            'stock' => 'required',
         ]);
 
         if($request->file('image') != null){
