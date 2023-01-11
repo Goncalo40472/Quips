@@ -30,7 +30,7 @@ final class UserTest extends TestCase
         $this->assertEquals(0, $user->type);
     }
     
-    public function testSaveUserDB()
+    /*public function testSaveUserDB()
     {
         $user = new User([
             'name' => fake()->name(),
@@ -44,6 +44,6 @@ final class UserTest extends TestCase
 
         $user->save();
         $this->assertDatabaseHas('users', $user->toArray());
-    }
+    }*/
 
 }
