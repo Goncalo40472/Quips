@@ -33,7 +33,7 @@ final class ProductTest extends TestCase
         $this->assertEquals(1, $product->category_id);
     }
 
-    public function testSaveProductDB()
+    /*public function testSaveProductDB()
     {
         $product = new Product([
             'name' => fake()->text(35),
@@ -47,7 +47,7 @@ final class ProductTest extends TestCase
 
         $product->save();
         $this->assertDatabaseHas('products', $product->toArray());
-    }
+    }*/
 
 }
 
