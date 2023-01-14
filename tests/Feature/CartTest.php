@@ -11,20 +11,6 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 final class CartTest extends TestCase
 {
 
-    /*public function testAddProductToCart()
-    {
-
-        $product = Product::factory()->create();
-
-        $response = $this->post('/cart/addProduct/', [
-            'product' => $product,
-            'quantity' => 1,
-        ]);
-
-        $response->assertStatus(200);
-
-    }*/
-
     public function testGetCart()
     {
 
