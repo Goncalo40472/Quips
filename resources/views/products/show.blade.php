@@ -8,6 +8,7 @@
     <div id="productInfo">
         <p id="name">{{ $product->name }}</p>
         <p id="price">{{ $product->price }} €</p>
+        <p id="stock">Stock: {{ $product->stock }}</p>
         <form id="quantity" action="{{ route('cart.addProduct',$product) }}" method="POST">
             @csrf
             <a class="btn btn-primary" id="buy" href="{{ route('checkout',$product) }}">Comprar já!</a>

@@ -9,6 +9,8 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PaymentController; 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ReceiptController;
+use App\Http\Controllers\BuyController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,8 @@ Route::get('/users', [UserController::class, 'index'])->name('users')->middlewar
 Route::get('/users/show/{user}', [UserController::class, 'show'])->name('users.show')->middleware('is_admin');
 Route::post('/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('is_admin');
 
+/* Categories Routes */
+
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories')->middleware('is_admin');
 Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create')->middleware('is_admin');
 Route::post('/categories/destroy/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy')->middleware('is_admin');
@@ -69,7 +73,8 @@ Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store
 /* Payments Routes */
 
 Route::get('/checkout/{product}', [PaymentController::class, 'checkout'])->name('checkout');
-Route::post('/payment', [PaymentController::class, 'payment'])->name('payment.store');
+Route::post('/payment/{product}', [PaymentController::class, 'paymentProduct'])->name('payment.product');
+Route::post('/payment', [PaymentController::class, 'paymentCart'])->name('payment.cart');
 Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
 
 /* Cart Routes */
@@ -83,3 +88,12 @@ Route::post('/cart/productQuantity/{product}', [CartController::class, 'productQ
 /* Receipt Routes */
 
 Route::get('/receipt/{buy}', [ReceiptController::class, 'generateReceipt'])->name('receipt')->middleware('is_buy_owner');
+
+/* Buys Routes */
+
+Route::get('/buys', [BuyController::class, 'index'])->name('myBuys');
+Route::get('/buys/{buy}', [BuyController::class, 'show'])->name('buy')->middleware('is_buy_owner');
+
+/* Email Routes */
+
+Route::get('/emailReceipt/{buy}', [MailController::class, 'sendEmail'])->name('emailReceipt');

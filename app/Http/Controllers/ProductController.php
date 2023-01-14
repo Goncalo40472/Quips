@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Review;
 use App\Models\Cart;
+use App\Models\ProductsBuy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -49,6 +50,7 @@ class ProductController extends Controller
             'category' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'seller' => 'required|integer',
+            'stock' => 'required|integer|min:1',
         ]);
 
         $request->file('image')->store('public/images');
@@ -64,6 +66,7 @@ class ProductController extends Controller
             'category_id' => $request->get('category'),
             'image' => $request->file('image')->hashName(),
             'seller' => $request->get('seller'),
+            'stock' => $request->get('stock'),
         ]);
 
         $product->save();
@@ -135,6 +138,7 @@ class ProductController extends Controller
         $product->description = $request->get('description');
         $product->category_id = $request->get('category');
         $product->seller = $request->get('seller');
+        $product->stock = $request->get('stock');
 
         $product->save();
 
@@ -161,6 +165,9 @@ class ProductController extends Controller
         if($product->image != 'product-image-placeholder.jpeg'){
             File::delete('storage/images/' . $product->image);
         }
+
+        $productsBuy = ProductsBuy::where('product_id', $product->id)->get();
+        $productsBuy->each->delete();
 
         $product->delete();
 

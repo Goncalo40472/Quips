@@ -26,6 +26,7 @@ class ProductFactory extends Factory
             'category_id' => Category::all()->random()->id,
             'seller' => User::all()->random()->id,
             'image' => 'product-image-placeholder.jpeg',
+            'stock' => fake()->numberBetween(1, 100),
         ];
     }
 }

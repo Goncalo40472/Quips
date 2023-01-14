@@ -24,72 +24,6 @@ class CartController extends Controller
         return view('cart.index', ['cart' => $cart]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cart $cart)
-    {
-        //
-    }
-
     public function removeProduct(Product $product)
     {
         $cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
@@ -101,13 +35,19 @@ class CartController extends Controller
     public function addProduct(Request $request, Product $product)
     {
         Request()->validate([
-            'quantity' => 'required|numeric|min:1|max:10',
+            'quantity' => 'required|numeric|min:1',
         ]);
 
         $cart = new Cart();
         $cart->user_id = auth()->user()->id;
         $cart->product_id = $product->id;
-        $cart->quantity = $request->quantity;
+        
+        if($request->quantity <= $product->stock) {
+            $cart->quantity = $request->quantity;
+        } else {
+            $cart->quantity = $product->stock;
+        }
+
         $cart->price = $product->price * $request->quantity;
         $cart->save();
 
@@ -125,19 +65,30 @@ class CartController extends Controller
             $price += $item->product->price * $item->quantity;
         }
 
-        return view('payment.checkout', ['price' => $price]);
+        return view('payment.checkout', ['price' => $price, 'type' => 'cart']);
     }
 
     public function productQuantity(Request $request, Product $product)
     {
         Request()->validate([
-            'quantity' => 'required|numeric|min:1|max:10'
+            'quantity' => 'required|numeric|min:1'
         ]);
 
-        $cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
-        $cart->quantity = $request->quantity;
-        $cart->price = $product->price * $request->quantity;
-        $cart->save();
+        if($request->quantity <= $product->stock) {
+
+            $cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
+            $cart->quantity = $request->quantity;
+            $cart->price = $product->price * $request->quantity;
+            $cart->save();
+
+        }else {
+
+            $cart = Cart::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
+            $cart->quantity = $product->stock;
+            $cart->price = $product->price * $product->stock;
+            $cart->save();
+            
+        }
 
         return redirect()->route('cart');
     }

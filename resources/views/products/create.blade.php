@@ -15,6 +15,8 @@
             <input type="text" name="name" id="name" placeholder="Nome do produto" value="{{old('name')}}" required>
             <label for="description">Descrição</label>
             <textarea name="description" id="description" placeholder="Descrição do produto" value="{{old('description')}}" required></textarea>
+            <label for="stock">Stock</label>
+            <input type="text" name="stock" id="stock" placeholder="Stock do produto" value="{{old('stock')}}" required>
             <label for="price">Preço</label>
             <input type="text" name="price" id="price" placeholder="Preço do produto" value="{{old('price')}}" required>
             <label for="image">Imagem</label>

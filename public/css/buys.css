@@ -1,0 +1,56 @@
+#title{
+    font-size: 30px;
+    margin: 20px;
+    margin-top: 5px;
+    text-align: center;
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+#buy {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: dodgerblue;
+    box-shadow: 0 0 5px dodgerblue;
+    margin: 5px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#buyNum{
+    margin: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    font-size: 20px;
+}
+
+#buyNum:link {
+    color: dodgerblue;
+    text-decoration: none;
+}
+  
+
+#buyNum:visited {
+   color: dodgerblue;
+   text-decoration: none;
+}
+  
+#buyNum:hover {
+   color: lightskyblue;
+}
+
+#date {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 20px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    margin-left: auto;
+    margin-right: 50px;
+}

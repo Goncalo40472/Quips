@@ -19,50 +19,97 @@
                                     <p class="alert alert-{{$status}}">{{ Session::get($status) }}</p>
                                 @endif
                             @endforeach
-                            <form role="form" method="POST" id="paymentForm" action="{{ route('payment.store')}}">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="username">Nome</label>
-                                    <input type="text" class="form-control" name="fullName" placeholder="Nome" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardNumber">Número do Cartão</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="cardNumber" placeholder="Número do cartão" required>
+                            @if($type == 'product')
+                                <form role="form" method="POST" id="paymentForm" action="{{ route('payment.product',$product)}}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="username">Nome</label>
+                                        <input type="text" class="form-control" name="fullName" placeholder="Nome" required>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-8">
-                                        <div class="form-group">
-                                            <label><span class="hidden-xs">Data de Expiração</span> </label>
-                                            <div class="input-group">
-                                                <select class="form-control" name="month" required>
-                                                    <option value="">Mês</option>
-                                                    @foreach(range(1, 12) as $month)
-                                                        <option value="{{$month}}">{{$month}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <select class="form-control" name="year" required>
-                                                    <option value="">Ano</option>
-                                                    @foreach(range(date('Y'), date('Y') + 10) as $year)
-                                                        <option value="{{$year}}">{{$year}}</option>
-                                                    @endforeach
-                                                </select>
+                                    <div class="form-group">
+                                        <label for="cardNumber">Número do Cartão</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="cardNumber" placeholder="Número do cartão" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label><span class="hidden-xs">Data de Expiração</span> </label>
+                                                <div class="input-group">
+                                                    <select class="form-control" name="month" required>
+                                                        <option value="">Mês</option>
+                                                        @foreach(range(1, 12) as $month)
+                                                            <option value="{{$month}}">{{$month}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <select class="form-control" name="year" required>
+                                                        <option value="">Ano</option>
+                                                        @foreach(range(date('Y'), date('Y') + 10) as $year)
+                                                            <option value="{{$year}}">{{$year}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label data-toggle="tooltip" title=""
+                                                    data-original-title="3 digits code on back side of the card">CVV <i
+                                                    class="fa fa-question-circle"></i></label>
+                                                <input type="number" class="form-control" placeholder="CVV" name="cvv" minlength="3" maxlength="3" required>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label data-toggle="tooltip" title=""
-                                                data-original-title="3 digits code on back side of the card">CVV <i
-                                                class="fa fa-question-circle"></i></label>
-                                            <input type="number" class="form-control" placeholder="CVV" name="cvv" minlength="3" maxlength="3" required>
+                                    <input type="hidden" name="price" value="{{ $price }}">
+                                    <button class="subscribe btn btn-primary btn-block" type="submit"> Pagar ({{ $price }}€) </button>
+                                </form>
+                            @elseif($type == 'cart')
+                                <form role="form" method="POST" id="paymentForm" action="{{ route('payment.cart')}}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="username">Nome</label>
+                                        <input type="text" class="form-control" name="fullName" placeholder="Nome" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardNumber">Número do Cartão</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="cardNumber" placeholder="Número do cartão" required>
                                         </div>
                                     </div>
-                                </div>
-                                <input type="hidden" name="price" value="{{ $price }}">
-                                <button class="subscribe btn btn-primary btn-block" type="submit"> Pagar ({{ $price }}€) </button>
-                            </form>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label><span class="hidden-xs">Data de Expiração</span> </label>
+                                                <div class="input-group">
+                                                    <select class="form-control" name="month" required>
+                                                        <option value="">Mês</option>
+                                                        @foreach(range(1, 12) as $month)
+                                                            <option value="{{$month}}">{{$month}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <select class="form-control" name="year" required>
+                                                        <option value="">Ano</option>
+                                                        @foreach(range(date('Y'), date('Y') + 10) as $year)
+                                                            <option value="{{$year}}">{{$year}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label data-toggle="tooltip" title=""
+                                                    data-original-title="3 digits code on back side of the card">CVV <i
+                                                    class="fa fa-question-circle"></i></label>
+                                                <input type="number" class="form-control" placeholder="CVV" name="cvv" minlength="3" maxlength="3" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="price" value="{{ $price }}">
+                                    <button class="subscribe btn btn-primary btn-block" type="submit"> Pagar ({{ $price }}€) </button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>
