@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buy;
+use App\Models\Product;
+use App\Models\ProductsBuy;
 use Illuminate\Http\Request;
 
 class BuyController extends Controller
@@ -14,7 +16,8 @@ class BuyController extends Controller
      */
     public function index()
     {
-        //
+        $buys = Buy::where('user_id', auth()->user()->id)->get();
+        return view('buys.index', compact('buys'));
     }
 
     /**
@@ -46,7 +49,15 @@ class BuyController extends Controller
      */
     public function show(Buy $buy)
     {
-        //
+        $productsBuy = ProductsBuy::where('buy_id', $buy->id)->get();
+
+        $products = array();
+
+        foreach ($productsBuy as $productBuy) {
+            array_push($products, Product::where('id', $productBuy->product_id)->get());
+        }
+
+        return view('buys.show', compact('productsBuy', 'products', 'buy'));
     }
 
     /**

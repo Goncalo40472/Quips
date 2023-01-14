@@ -14,6 +14,7 @@
                     <img src="{{ asset('storage/images/'.$product->image) }}" alt="image">
                     <a id="name" href="{{ route('products.show',$product) }}">{{ $product->name }}</a>
                     <p id="price">{{ $product->price }}€</p>
+                    <p id="stock">Stock: {{ $product->stock }}</p>
                 </div>
                 <div id="buttons">
                     <input type="hidden" name="product_id" value="{{ $product->id }}">

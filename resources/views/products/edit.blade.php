@@ -15,6 +15,8 @@
             <textarea name="description" id="description" placeholder="Descrição do produto" required>{{$product->description}}</textarea>
             <label for="price">Preço</label>
             <input type="text" name="price" id="price" placeholder="Preço do produto" value="{{$product->price}}" required>
+            <label for="stock">Stock</label>
+            <input type="text" name="stock" id="stock" placeholder="Stock do produto" value="{{$product->stock}}" required>
             <label for="image">Imagem</label>
             <input type="file" accept="image/*" value="{{$product->image}}" name="image" id="image">
             <label for="category">Categoria</label>
