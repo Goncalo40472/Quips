@@ -1,8 +1,10 @@
 name: Build
 on:
-  push:
-    branches-ignore:
+ push:
+    branches:
       - main
+ pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -24,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-        fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
       - name: Cache Composer packages
