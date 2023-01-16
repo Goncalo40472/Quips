@@ -34,7 +34,7 @@ final class RegisterTest extends TestCase
             'type' => 0,
         ]);
 
-        $response->assertRedirect('/');
+        $response->assertRedirect('/home');
         $response->assertStatus(302);
 
     }
